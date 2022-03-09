@@ -1,15 +1,18 @@
-import {request, qhl} from 'graphql-request';
+import {request, gql} from 'graphql-request';
+
+const graphqlAPI  = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
 export const getPosts = async () => {
-    const query = qhl`
-    query MyQuery {
+    const query = gql`
+      query MyQuery {
         postsConnection {
           edges {
+            cursor
             node {
               author {
                 bio
-                id
                 name
+                id
                 photo {
                   url
                 }
@@ -29,6 +32,10 @@ export const getPosts = async () => {
           }
         }
       }
-      
-    `
-}
+    `;
+  
+    const result = await request(graphqlAPI, query);
+  
+    return result.postsConnection.edges;
+  };
+

@@ -1,20 +1,10 @@
 import Head from 'next/head'
 
 import { PostCard, PostWidget, Categories } from '../components'
+import {getPosts} from '../services'
 
-// demo list of our posts before we fetch data from graphQL
-const posts = [
-  {
-    title: 'React Testing',
-    excerpt: 'Learn React Testing',
-  },
-  {
-    title: 'React with Tailwind',
-    excerpt: 'Learn React with Tailwind',
-  },
-]
-
-export default function Home() {
+// we dont need our hardcoded posts => NextJs to fetch it => creating new async function
+export default function Home({posts}) {
   return (
     // margin x-auto, padding on horizontal access = 10; margin bottom = 8;
     <div className="container mx-auto mb-8 px-10">
@@ -38,4 +28,13 @@ export default function Home() {
       </div>
     </div>
   )
+}
+ 
+
+// fetching data using getStaticProps in NextJs
+export async function getStaticProps() {
+  const posts= (await getPosts()) || [];
+  return {
+    props: {posts}
+  }
 }
