@@ -1,4 +1,6 @@
-import React, { useContext } from 'react'
+
+import React, { useState, useEffect } from 'react'
+import { getCategories } from '../services'
 
 import Link from 'next/link'
 
@@ -8,6 +10,12 @@ const categories = [
 ]
 
 const Header = () => {
+  const [categories, setCategories] = useState([])
+
+  // dependency array is empty which means we are only calling it the start
+  useEffect(() => {
+    getCategories().then((newCategories) => setCategories(newCategories))
+  }, [])
   return (
     <div className="container mx-auto mb-8 px-10">
       <div className="inline-block w-full border-b border-blue-400 py-8">
