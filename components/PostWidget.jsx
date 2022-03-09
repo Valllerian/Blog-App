@@ -11,14 +11,14 @@ const PostWidget = ({ categories, slug }) => {
   useEffect(() => {
     if (slug) {
       getSimilarPosts(categories, slug).then((result) => {
-        setRelatedPosts(result);
-      });
+        setRelatedPosts(result)
+      })
     } else {
       getRecentPosts().then((result) => {
-        setRelatedPosts(result);
-      });
+        setRelatedPosts(result)
+      })
     }
-  }, [slug]);
+  }, [slug])
   console.log(relatedPosts)
   return (
     <div className="mb-8 rounded-lg bg-white p-8 shadow-lg">
@@ -36,11 +36,17 @@ const PostWidget = ({ categories, slug }) => {
               src={post.featuredImage.url}
             />
           </div>
-          <div className='flex-grow ml-4'>
-        <p className='text-gray-500 font-xs'>
-           {moment(post.createdAt).format('MMM DD, YYYY')}
-        </p>
-        <Link href={`/post/${post.slug}`} className='text-md' key={post.title}>{post.title}</Link>
+          <div className="ml-4 flex-grow">
+            <p className="font-xs text-gray-500">
+              {moment(post.createdAt).format('MMM DD, YYYY')}
+            </p>
+            <Link
+              href={`/post/${post.slug}`}
+              className="text-md"
+              key={post.title}
+            >
+              {post.title}
+            </Link>
           </div>
         </div>
       ))}
