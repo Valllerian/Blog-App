@@ -10,6 +10,7 @@ import {
   Comments,
   CommentsForm,
 } from '../../components'
+
 import { getPosts } from '../../services'
 
 const PostDetails = ({ post }) => {
