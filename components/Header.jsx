@@ -26,7 +26,7 @@ const Header = () => {
         {/* Use contents to create fantom container so its only appearing on the device that we want */}
         <div className="hidden md:float-left md:contents">
           {categories.map((category) => (
-            <Link key={category.slug} href={`/category/${category.slug}`}>
+            <Link key={category.slug} href={`post/category/${category.slug}`}>
               <span className="mt-2 ml-4 cursor-pointer align-middle font-semibold text-white md:float-right">
                 {category.name}
               </span>
